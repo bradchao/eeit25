@@ -4,7 +4,7 @@ public class Brad04 {
 
 	public static void main(String[] args) {
 		// char: 2^16, 0 ~ 65535 
-		char aa = 65;
+		char aa = 66;
 		char bb = 'b';
 		char cc = '資';
 		System.out.println(aa);
