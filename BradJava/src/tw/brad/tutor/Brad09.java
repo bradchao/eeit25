@@ -7,7 +7,7 @@ public class Brad09 {
 		p0 = p1 = p2 = p3 = p4= p5 = p6 = 0;
 		
 		int point;
-		for (int i=0; i<100; i++) {
+		for (int i=0; i<1000000; i++) {
 			point = (int)(Math.random()*6) + 1;	// 1 ~ 6
 			
 			switch(point) {
