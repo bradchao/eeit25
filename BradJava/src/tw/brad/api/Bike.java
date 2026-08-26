@@ -11,6 +11,7 @@ public class Bike extends Object{
 	}
 	// Overload
 	public Bike(String color) {
+		
 		changeColor(color);
 	}
 	
