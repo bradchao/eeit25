@@ -16,6 +16,14 @@ public class Brad18 {
 		System.out.println(id2.getId());
 		System.out.println(id3.getId());
 		System.out.println(id4.getId());
+		
+		TWId id5 = TWId.newTWId("A12345678");
+		if (id5 != null) {
+			System.out.println(id5.getId());
+		}else {
+			System.out.println("no");
+		}
+		
 	}
 
 }

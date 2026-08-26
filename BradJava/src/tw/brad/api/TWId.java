@@ -28,9 +28,17 @@ public class TWId {
 		
 	}
 	
-//	public TWId(String id) {
-//		this.id = id;
-//	}
+	private TWId(String id) {
+		this.id = id;
+	}
+	
+	public static TWId newTWId(String id) {
+		if (isRight(id)) {
+			return new TWId(id);
+		}else {
+			return null;
+		}
+	}
 	
 	
 	public String getId() {
