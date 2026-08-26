@@ -3,6 +3,12 @@ package tw.brad.api;
 public class Scooter extends Bike{
 	private int gear;
 
+	public Scooter(){
+		super("green");
+		System.out.println("Scooter()");
+	}
+	
+	
 	@Override
 	public void upSpeed() {
 		//super.upSpeed();

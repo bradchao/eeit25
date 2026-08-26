@@ -1,11 +1,12 @@
 package tw.brad.api;
 
-public class Bike {
+public class Bike extends Object{
 	protected double speed;
 	private String color;
 	
 	public Bike() {
-		//System.out.println("Bike()");
+		super();
+		System.out.println("Bike()");
 		color = "white";
 	}
 	// Overload
