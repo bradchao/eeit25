@@ -34,4 +34,10 @@ public class Bike extends Object{
 	public double getSpeed() {
 		return speed;
 	}
+	
+	@Override
+	public String toString() {
+		return "Speed: " + speed;
+	}
+	
 }
