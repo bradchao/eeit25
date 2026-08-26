@@ -5,8 +5,12 @@ public class Bike {
 	private String color;
 	
 	public Bike() {
-		System.out.println("Bike()");
+		//System.out.println("Bike()");
 		color = "white";
+	}
+	// Overload
+	public Bike(String color) {
+		changeColor(color);
 	}
 	
 	
