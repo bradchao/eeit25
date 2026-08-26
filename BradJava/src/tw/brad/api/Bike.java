@@ -4,6 +4,12 @@ public class Bike {
 	protected double speed;
 	private String color;
 	
+	public Bike() {
+		System.out.println("Bike()");
+		color = "white";
+	}
+	
+	
 	public void changeColor(String color) {
 		this.color = color;
 	}
