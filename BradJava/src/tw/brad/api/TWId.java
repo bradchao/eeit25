@@ -16,6 +16,15 @@ public class TWId {
 		this(new Random().nextBoolean(), area);
 	}
 	public TWId(boolean isMale, char area) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(area).append(isMale?"1":"2");
+		for (int i=0; i<7; i++) sb.append(new Random().nextInt(10));
+		for (int i=0; i<10; i++) {
+			if (isRight(sb.toString() + i)) {
+				id = sb.append(i).toString();
+				break;
+			}
+		}
 		
 	}
 	
@@ -63,10 +72,9 @@ public class TWId {
 				
 				int sum = a1*1 + a2*9 + n1*8 + n2*7+ n3*6+ n4*5
 						+ n5*4+ n6*3+ n7*2+ n8*1+ n9*1;
-				
+				//-------------------------------------------
 				isRight = sum % 10 == 0;
 			}
-			
 			
 		}
 		return isRight;

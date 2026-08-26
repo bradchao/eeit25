@@ -10,9 +10,10 @@ public class Scooter extends Bike{
 	
 	
 	@Override
-	public void upSpeed() {
+	public Scooter upSpeed() {
 		//super.upSpeed();
 		speed = speed < 1? 1: speed*1.8 * gear;
+		return this;
 	}
 	
 	public void changeGear(int gear) {

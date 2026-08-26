@@ -16,6 +16,9 @@ public class Brad14 {
 		System.out.println(urbike.getColor());
 		System.out.println("---");
 		Scooter s1 = new Scooter();
+		s1.changeGear(2);
+		s1.upSpeed().upSpeed().upSpeed().upSpeed();
+		System.out.println(s1);
 	}
 
 }
