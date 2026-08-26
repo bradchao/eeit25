@@ -3,7 +3,7 @@ package tw.brad.api;
 public class Scooter extends Bike{
 	private int gear;
 
-	//@Override
+	@Override
 	public void upSpeed() {
 		//super.upSpeed();
 		speed = speed < 1? 1: speed*1.8 * gear;
