@@ -1,18 +1,20 @@
 package tw.brad.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class GuessNumber extends JFrame{
+public class GuessNumber extends JFrame implements ActionListener{
 	private JTextField input;
 	private JButton guess;
 	private JTextArea log;
+	private String answer;
 	
 	public GuessNumber() {
 		super("猜數字遊戲");
@@ -35,9 +37,48 @@ public class GuessNumber extends JFrame{
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		guess.addActionListener(this);
+		initGame();
+		
 	}
 	public static void main(String[] args) {
 		new GuessNumber();
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//System.out.println("OK");
+		//System.out.println(createAnswer(4));
+		String g = input.getText();
+		String result = checkAB(g);
+		log.append(String.format("%s => %s\n", g, result));
+		input.setText("");
+	}
+	
+	private void initGame() {
+		answer = createAnswer(3);
+	}
+	
+	private String createAnswer(int d) {
+		int[] poker = new int[10];
+		for (int i=0; i<poker.length; i++) poker[i] = i;
+		
+		for (int i=0; i<poker.length; i++) {
+			int rIndex = (int)(Math.random()*10);
+			// poker[i] <-> poker[rIndex]
+			int temp = poker[i];
+			poker[i] = poker[rIndex];
+			poker[rIndex] = temp; 
+		}
+		//-----------------------
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<d; i++) sb.append(poker[i]);
+		return sb.toString();
+	}
+	
+	private String checkAB(String g) {
+		return "1A1B";
+	}
+	
 
 }
