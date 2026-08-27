@@ -4,21 +4,31 @@ import java.util.Random;
 
 public class TWId {
 	private String id;
-	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	private static final String LETTERS = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	private static final Random RANDOM = new Random();
+	private static final String[] AREAS = {
+			"台北市","台中市","AAA","BBB",
+			"台北市","台中市","AAA","BBB",
+			"台北市","台中市","AAA","BBB",
+			"台北市","台中市","AAA","BBB",
+			"台北市","台中市","AAA","BBB",
+			"台北市","台中市","AAA","BBB",
+			"CCC","DDD"
+	};
 	
 	public TWId() {
-		this(new Random().nextBoolean());
+		this(RANDOM.nextBoolean());
 	}
 	public TWId(boolean isMale) {
-		this(isMale, letters.charAt(new Random().nextInt(26)));
+		this(isMale, LETTERS.charAt(RANDOM.nextInt(26)));
 	}
 	public TWId(char area) {
-		this(new Random().nextBoolean(), area);
+		this(RANDOM.nextBoolean(), area);
 	}
 	public TWId(boolean isMale, char area) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(area).append(isMale?"1":"2");
-		for (int i=0; i<7; i++) sb.append(new Random().nextInt(10));
+		for (int i=0; i<7; i++) sb.append(RANDOM.nextInt(10));
 		for (int i=0; i<10; i++) {
 			if (isRight(sb.toString() + i)) {
 				id = sb.append(i).toString();
@@ -45,6 +55,21 @@ public class TWId {
 		return id;
 	}
 	
+	public boolean isMale() {
+		return id.charAt(1) == '1';
+	}
+	
+	public String getArea() {
+		int index = LETTERS.indexOf(id.charAt(0));
+		return AREAS[index];
+	}
+	
+	
+	@Override
+	public String toString() {
+		return id;
+	}
+	
 	
 	public static boolean isRight(String id) {
 		boolean isRight = false;
@@ -62,7 +87,7 @@ public class TWId {
 			if (id.matches("[A-Z][12][0-9]{8}")) {
 				char c1 = id.charAt(0);
 				
-				int a12 = letters.indexOf(c1) + 10;
+				int a12 = LETTERS.indexOf(c1) + 10;
 				//System.out.println(a12);
 				int a1 = a12 / 10;
 				int a2 = a12 % 10;
