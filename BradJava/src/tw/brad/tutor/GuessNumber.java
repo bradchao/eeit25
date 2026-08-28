@@ -42,6 +42,12 @@ public class GuessNumber extends JFrame implements ActionListener{
 		
 		guess.addActionListener(this);
 		guess.addActionListener(new MyListener());
+		guess.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("OK2");
+			}
+		});
 		
 		initGame();
 		
