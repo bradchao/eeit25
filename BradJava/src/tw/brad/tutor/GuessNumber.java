@@ -41,6 +41,8 @@ public class GuessNumber extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		guess.addActionListener(this);
+		guess.addActionListener(new MyListener());
+		
 		initGame();
 		
 	}
@@ -103,6 +105,14 @@ public class GuessNumber extends JFrame implements ActionListener{
 			}
 		}
 		return String.format("%dA%dB", A, B);
+	}
+	
+	private class MyListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("OK");
+		}
+		
 	}
 	
 
