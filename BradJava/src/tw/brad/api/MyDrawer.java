@@ -16,7 +16,7 @@ public class MyDrawer extends JPanel{
 	public MyDrawer() {
 		setBackground(Color.YELLOW);
 		
-		MyListener myListener = new MyListener();
+		MyListener myListener = new MyListener(this);
 		addMouseListener(myListener);
 		addMouseMotionListener(myListener);
 	}
@@ -42,6 +42,12 @@ public class MyDrawer extends JPanel{
 }
 
 class MyListener extends MouseAdapter {
+	private MyDrawer myDrawer;
+	
+	public MyListener(MyDrawer myDrawer) {
+		this.myDrawer = myDrawer;
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
