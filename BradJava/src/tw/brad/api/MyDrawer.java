@@ -13,7 +13,9 @@ public class MyDrawer extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		System.out.println("OK");
+		
+		
+		
 	}
 	
 	
