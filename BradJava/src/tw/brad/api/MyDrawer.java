@@ -8,15 +8,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.DebugGraphics;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel{
+	private ArrayList<Point> points;
+	
+	
 	public MyDrawer() {
+		points = new ArrayList<>();
+		
 		setBackground(Color.YELLOW);
 		
-		MyListener myListener = new MyListener(this);
+		MyListener myListener = new MyListener();
 		addMouseListener(myListener);
 		addMouseMotionListener(myListener);
 	}
@@ -25,44 +31,38 @@ public class MyDrawer extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-//		if (g instanceof DebugGraphics) {
-//			System.out.println("1");
-//		}else if (g instanceof Graphics2D) {
-//			System.out.println("2");
-//		}else {
-//			System.out.println("3");
-//		}
-
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setColor(Color.BLUE);
-		g2d.drawLine(0, 0, 200, 300);
+		
+		for (int i= 1; i< points.size(); i++) {
+			Point p0 = points.get(i-1);
+			Point p1 = points.get(i);
+			g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+		}
 		
 	}
+	
+	
+	private class MyListener extends MouseAdapter {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			Point p = new Point(e.getX(), e.getY());
+			points.add(p);
+		}
+		
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			Point p = new Point(e.getX(), e.getY());
+			points.add(p);
+			repaint();
+		}
+		
+	}
+	
+	
 }
 
-class MyListener extends MouseAdapter {
-	private MyDrawer myDrawer;
-	
-	public MyListener(MyDrawer myDrawer) {
-		this.myDrawer = myDrawer;
-	}
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		super.mousePressed(e);
-		System.out.println("mousePressed");
-	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		super.mouseDragged(e);
-		System.out.println("mouseDragged");
-	}
-	
-}
 
 
 
