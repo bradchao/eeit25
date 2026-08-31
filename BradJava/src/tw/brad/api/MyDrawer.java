@@ -14,11 +14,11 @@ import javax.swing.DebugGraphics;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel{
-	private ArrayList<Point> points;
+	private ArrayList<Line> lines;
 	
 	
 	public MyDrawer() {
-		points = new ArrayList<>();
+		lines = new ArrayList<>();
 		
 		setBackground(Color.YELLOW);
 		
@@ -34,12 +34,14 @@ public class MyDrawer extends JPanel{
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setColor(Color.BLUE);
-		
-		for (int i= 1; i< points.size(); i++) {
-			Point p0 = points.get(i-1);
-			Point p1 = points.get(i);
-			g2d.drawLine(p0.getX(), p0.getY(), p1.getX(), p1.getY());
+
+		for (Line line: lines) {
+			for (int i= 1; i< line.getSize(); i++) {
+				g2d.drawLine(line.getX(i-1), line.getY(i-1), 
+						line.getX(i), line.getY(i));
+			}			
 		}
+
 		
 	}
 	
@@ -47,14 +49,14 @@ public class MyDrawer extends JPanel{
 	private class MyListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			points.add(p);
+			Line line = new Line(Color.BLUE);
+			line.addPoint(e.getX(), e.getY());
+			lines.add(line);
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			Point p = new Point(e.getX(), e.getY());
-			points.add(p);
+			lines.getLast().addPoint(e.getX(), e.getY());
 			repaint();
 		}
 		
