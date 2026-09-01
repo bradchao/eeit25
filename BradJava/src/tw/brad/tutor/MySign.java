@@ -5,17 +5,20 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tw.brad.api.MyDrawer;
 
 public class MySign extends JFrame{
 	private MyDrawer myDrawer;
-	private JButton clear, undo, redo, color;
+	private JButton clear, undo, redo, color, saveLines, loadLines;
 
 	public MySign() {
 		
@@ -29,6 +32,8 @@ public class MySign extends JFrame{
 		undo = new JButton("Undo"); top.add(undo);
 		redo = new JButton("Redo"); top.add(redo);
 		color = new JButton("Color"); top.add(color);
+		saveLines = new JButton("Save"); top.add(saveLines);
+		loadLines = new JButton("Load"); top.add(loadLines);
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -64,7 +69,49 @@ public class MySign extends JFrame{
 				changeColor();
 			}
 		});
+		saveLines.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveLines();
+			}
+		});
+		loadLines.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadLines();
+			}
+		});
 	}
+
+	private File file = null;
+	
+	private void saveLines() {
+		try {
+			if (file != null) {
+				myDrawer.saveLines(file);
+			}else {
+				JFileChooser jfc = new JFileChooser();
+				if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+					file = jfc.getSelectedFile();
+					myDrawer.saveLines(file);
+				}
+			}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Save Failure");
+		}
+	}
+	private void loadLines() {
+		try {
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			file = jfc.getSelectedFile();
+			myDrawer.readLines(file);
+		}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Load Failure");
+		}
+	}
+	
 	
 	private void changeColor() {
 		Color newColor = JColorChooser.showDialog(this, "Change Color", myDrawer.getColor());
