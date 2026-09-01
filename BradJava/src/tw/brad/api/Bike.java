@@ -1,6 +1,8 @@
 package tw.brad.api;
 
-public class Bike extends Object{
+import java.io.Serializable;
+
+public class Bike extends Object implements Serializable{
 	protected double speed;
 	private String color;
 	
