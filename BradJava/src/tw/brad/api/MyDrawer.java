@@ -6,11 +6,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javax.swing.DebugGraphics;
 import javax.swing.JPanel;
 
 public class MyDrawer extends JPanel{
@@ -64,6 +66,26 @@ public class MyDrawer extends JPanel{
 		if (recycler.size() > 0) {
 			lines.add(recycler.removeLast());
 			repaint();
+		}
+	}
+	
+	public void saveLines(File saveFile) throws Exception{
+		try(ObjectOutputStream oout = new ObjectOutputStream(
+				new FileOutputStream(saveFile))){
+			oout.writeObject(lines);
+		}
+	}
+	
+	public void readLines(File loadFile) throws Exception{
+		try (ObjectInputStream oin = new ObjectInputStream(
+				new FileInputStream(loadFile))){
+			Object obj = oin.readObject();
+			if (obj instanceof ArrayList) {
+				lines = (ArrayList<Line>)obj;
+				repaint();
+			}else {
+				throw new Exception("File Format ERROR");
+			}
 		}
 	}
 	
