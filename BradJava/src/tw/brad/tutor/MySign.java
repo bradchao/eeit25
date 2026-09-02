@@ -18,7 +18,7 @@ import tw.brad.api.MyDrawer;
 
 public class MySign extends JFrame{
 	private MyDrawer myDrawer;
-	private JButton clear, undo, redo, color, saveLines, loadLines;
+	private JButton clear, undo, redo, color, saveLines, loadLines, saveJPEG;
 
 	public MySign() {
 		
@@ -34,6 +34,7 @@ public class MySign extends JFrame{
 		color = new JButton("Color"); top.add(color);
 		saveLines = new JButton("Save"); top.add(saveLines);
 		loadLines = new JButton("Load"); top.add(loadLines);
+		saveJPEG = new JButton("JPEG"); top.add(saveJPEG);
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -81,6 +82,12 @@ public class MySign extends JFrame{
 				loadLines();
 			}
 		});
+		saveJPEG.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveJPEG();
+			}
+		});
 	}
 
 	private File file = null;
@@ -102,13 +109,24 @@ public class MySign extends JFrame{
 	}
 	private void loadLines() {
 		try {
-		JFileChooser jfc = new JFileChooser();
-		if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-			file = jfc.getSelectedFile();
-			myDrawer.readLines(file);
-		}
+			JFileChooser jfc = new JFileChooser();
+			if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+				file = jfc.getSelectedFile();
+				myDrawer.readLines(file);
+			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(this, "Load Failure");
+		}
+	}
+	private void saveJPEG() {
+		try {
+			JFileChooser jfc = new JFileChooser();
+			if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+				File jpeg = jfc.getSelectedFile();
+				myDrawer.saveJPEG(jpeg);
+			}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Save Failure");
 		}
 	}
 	

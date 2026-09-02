@@ -42,11 +42,12 @@ public class TWId {
 		this.id = id;
 	}
 	
-	public static TWId newTWId(String id) {
+	public static TWId newTWId(String id) throws Exception{
 		if (isRight(id)) {
 			return new TWId(id);
 		}else {
-			return null;
+			throw new Exception();
+			//return null;
 		}
 	}
 	
