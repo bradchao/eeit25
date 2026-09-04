@@ -72,6 +72,9 @@ public class JDBC07 {
 				String feature = row.getString("FoodFeature");
 				String picurl = row.getString("PicURL");
 				
+				String lat = row.getString("Latitude");
+				String lng = row.getString("Longitude");
+				
 				pstmt.setString(1, name);
 				pstmt.setString(2, city);
 				pstmt.setString(3, town);
@@ -79,17 +82,26 @@ public class JDBC07 {
 				pstmt.setString(5, tel);
 				pstmt.setString(6, feature);
 				pstmt.setString(7, picurl);
+				try {
+					pstmt.setDouble(8, Double.parseDouble(lat));
+					pstmt.setDouble(9, Double.parseDouble(lng));
+				}catch(Exception e) {
+					pstmt.setDouble(8, 0.0);
+					pstmt.setDouble(9, 0.0);
+					
+				}
 				
-				
-				
+				pstmt.addBatch();
 				
 			}
-
+			
+			pstmt.executeBatch();
+			System.out.println("Finish");
 			
 			
 			
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 	}
