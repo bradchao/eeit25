@@ -9,7 +9,8 @@ public class JDBC02 {
 
 	public static void main(String[] args) {
 		//String url = "jdbc:mysql://localhost/mytest?user=root&password=root&useSSL=false&characterEncoding=UTF-8";
-		String url = "jdbc:mysql://localhost/brad?user=root&password=root";
+		//String url = "jdbc:sqlserver://localhost:1443;databaseName=brad;encrypt=true;trustServerCertificate=true;";
+		String url = "jdbc:mysql://localhost:3306/brad?user=root&password=root";
 		try {
 			Connection conn = DriverManager.getConnection(url);
 			
