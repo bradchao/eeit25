@@ -11,7 +11,7 @@ public class JDBC06 {
 	private static final String URL = "jdbc:mysql://localhost:3306/brad";
 	private static final Properties PROP = new Properties();
 	private static final String SQL = """
-							SELECT * 
+							SELECT id, cname myname, tel, birthday 
 							FROM cust
 							""";
 
@@ -27,9 +27,10 @@ public class JDBC06 {
 				){
 			
 			while (rs.next()) {
-				String c1 =  rs.getString(1);
-				String c2 =  rs.getString(2);
-				System.out.printf("%s:%s\n", c1, c2);
+				String c1 =  rs.getString("id");
+				String c2 =  rs.getString("myname");
+				String c3 =  rs.getString("birthday");
+				System.out.printf("%s:%s:%s\n", c1, c2, c3);
 			}
 			
 			
