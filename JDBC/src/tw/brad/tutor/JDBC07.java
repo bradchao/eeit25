@@ -24,6 +24,12 @@ public class JDBC07 {
 							VALUES 
 							(?,?,?,?,?,?,?,?,?)
 							""";
+	private static final String SQL_DEL_ALL = """
+							DELETE FROM food
+							""";
+	private static final String SQL_ID_ZERO = """
+							ALTER TABLE food AUTO_INCREMENT = 1
+							""";
 
 	public static void main(String[] args) {
 		try {
@@ -56,8 +62,13 @@ public class JDBC07 {
 		PROP.put("characterEncoding", "UTF-8");
 
 		try (Connection conn = DriverManager.getConnection(URL,PROP);
-				PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT);
 					){
+			
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(SQL_DEL_ALL);
+			stmt.execute(SQL_ID_ZERO);
+			
+			PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT);
 			
 			JSONArray root = new JSONArray(json);
 			System.out.println(root.length());
