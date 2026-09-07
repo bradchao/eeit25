@@ -3,6 +3,7 @@ package tw.brad.tutor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -36,8 +37,14 @@ public class JDBC12 {
 			String key = scanner.next();
 			System.out.println("-----");
 			
-			List<Food> foods = search(key, pstmt);
+			String skey = "%" + key + "%";
+			List<Food> foods = search(skey, pstmt);
+			System.out.printf("共%d筆美食資料\n", foods.size());
+			System.out.println("-----");
 			for (Food food : foods) {
+				System.out.printf("%d:%s:%s:%s\n", food.getId(), food.getName(), food.getTel(), food.getAddr());
+				System.out.printf("%s\n", food.getFeature());
+				System.out.println("------------------------");
 				
 			}
 			
@@ -46,8 +53,19 @@ public class JDBC12 {
 		}		
 	}
 	
-	static List<Food> search(String key, PreparedStatement pstmt){
+	static List<Food> search(String key, PreparedStatement pstmt)throws Exception{
 		List<Food> foods = new LinkedList<>();
+
+		for (int i=1; i<=6; i++) pstmt.setString(i, key);
+		
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			Food food = new Food(rs.getLong("id"), rs.getString("name"), 
+					rs.getString("city")+rs.getString("town")+rs.getString("addr"),
+					rs.getString("tel"),rs.getString("feature"));
+			foods.add(food);
+		}
+		
 		
 		return foods;
 	}

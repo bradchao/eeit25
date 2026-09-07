@@ -2,14 +2,12 @@ package tw.brad.api;
 
 public class Food {
 	private long id;
-	private String name, city, town, addr, tel, feature;
+	private String name, addr, tel, feature;
 	
-	public Food(long id, String name, String city, String town, String addr, String tel, String feature) {
+	public Food(long id, String name, String addr, String tel, String feature) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.city = city;
-		this.town = town;
 		this.addr = addr;
 		this.tel = tel;
 		this.feature = feature;
@@ -26,18 +24,6 @@ public class Food {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getTown() {
-		return town;
-	}
-	public void setTown(String town) {
-		this.town = town;
 	}
 	public String getAddr() {
 		return addr;
