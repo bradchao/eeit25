@@ -20,6 +20,8 @@ public class JDBC13 {
 						ORDER BY id
 						LIMIT ?, ?
 							""";
+	private static final int rpp = 10;
+	
 	public static void main(String[] args) {
 		
 		PROP.put("user", "root");
@@ -30,16 +32,16 @@ public class JDBC13 {
 		try (Connection conn = DriverManager.getConnection(URL,PROP);
 				PreparedStatement pstmt = conn.prepareStatement(SQL_KEY);
 				){
-//			System.out.println("Food Search");
-//			System.out.println("-----");
-//			Scanner scanner = new Scanner(System.in);
-//			System.out.print("Keyword: ");
-//			String key = scanner.next();
-//			System.out.println("-----");
+			System.out.println("Food Search");
+			System.out.println("-----");
+			Scanner scanner = new Scanner(System.in);
+			System.out.print("Page: ");
+			int page = scanner.nextInt();
+			System.out.println("-----");
 //			
 //			String skey = "%" + key + "%";
 			
-			List<Food> foods = search(pstmt);
+			List<Food> foods = search(page, pstmt);
 			System.out.printf("共%d筆美食資料\n", foods.size());
 			System.out.println("-----");
 			for (Food food : foods) {
@@ -53,9 +55,14 @@ public class JDBC13 {
 		}		
 	}
 	
-	static List<Food> search(PreparedStatement pstmt)throws Exception{
+	static List<Food> search(int page, PreparedStatement pstmt)throws Exception{
 		List<Food> foods = new LinkedList<>();
 
+		int start = (page - 1) * rpp;
+		
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, rpp);
+		
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			Food food = new Food(rs.getLong("id"), rs.getString("name"), 
