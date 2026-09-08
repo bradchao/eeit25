@@ -17,8 +17,10 @@ public class JdbcTool {
 		
 		try(Connection conn = DriverManager.getConnection(URL, USER, PASSWD);
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
-			for (int i=0; i<args.length; i++) {
-				pstmt.setObject(i+1, args[i]);
+			if (args != null) {
+				for (int i=0; i<args.length; i++) {
+					pstmt.setObject(i+1, args[i]);
+				}
 			}
 			
 			try (ResultSet rs = pstmt.executeQuery()){
