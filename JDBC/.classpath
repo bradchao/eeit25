@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/brad/mysql-connector-j-26.7.0/mysql-connector-j-26.7.0.jar"/>
 	<classpathentry kind="lib" path="C:/brad/json-20260814.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/slf4j-api-2.0.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Downloads/HikariCP-7.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
