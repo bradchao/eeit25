@@ -32,7 +32,7 @@ public class JdbcToolV2 {
 		dataSource = new HikariDataSource(config);
 	}	
 	
-	public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object...args){
+	public static <T> List<T> query(String sql, RowMapper<T> rowMapper, Object...args){
 		List<T> list = new ArrayList<T>();
 		
 		try(Connection conn = dataSource.getConnection();
@@ -59,7 +59,7 @@ public class JdbcToolV2 {
 	}
 	
 	
-	public int update(String sql, Object...args) {
+	public static int update(String sql, Object...args) {
 		int rows = 0;
 		
 		try(Connection conn = dataSource.getConnection();

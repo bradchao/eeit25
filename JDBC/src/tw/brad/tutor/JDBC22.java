@@ -5,13 +5,15 @@ import java.util.List;
 import tw.brad.api.Member;
 import tw.brad.api.MemberDao;
 import tw.brad.api.MemberDaoImpl;
+import tw.brad.api.MyMemberDao;
 
 public class JDBC22 {
 
 	public static void main(String[] args) {
-		MemberDao dao = new MemberDaoImpl();
+//		MemberDao dao = new MemberDaoImpl();
+		MemberDao dao = new MyMemberDao();
 		
-		String account = "cindy"; String passwd = "12345678"; String name = "Cindy";
+		String account = "tony"; String passwd = "12345678"; String name = "湯尼";
 		
 		Member member = new Member();
 		member.setAccount(account); member.setPasswd(passwd);member.setName(name);
@@ -26,7 +28,7 @@ public class JDBC22 {
 		try {
 			Member member1 = dao.findById(2);
 			System.out.println(member1.getAccount());
-			member1.setPasswd("87654321");
+			member1.setPasswd("12345678");
 			if (dao.updateMember(member1)) {
 				System.out.println("Passwd Update Success");
 			}else {
@@ -38,7 +40,7 @@ public class JDBC22 {
 		}
 		//-------------------------------
 		try {
-			Member member2 = dao.login("andy", "87654321");
+			Member member2 = dao.login("andy", "12345678");
 			if (member2 != null) {
 				System.out.printf("Welcome, %s(%d)\n", member2.getName(), member2.getId());
 			}else {
