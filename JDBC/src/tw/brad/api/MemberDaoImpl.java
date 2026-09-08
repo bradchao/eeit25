@@ -35,7 +35,7 @@ public class MemberDaoImpl implements MemberDao{
 			);
 	
 	private static final String SQL_ADD = "INSERT INTO member (account,passwd,name) VALUES (?,?,?)";
-	private static final String SQL_UPDATE = "UPDATE member SET pssswd = ? WHERE id = ?";
+	private static final String SQL_UPDATE = "UPDATE member SET passwd = ? WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM member WHERE id = ?";
 	private static final String SQL_QUERY_ID = "SELECT id, account, passwd, name FROM member WHERE id = ?";
 	private static final String SQL_QUERY_ALL = "SELECT id, account, passwd, name FROM member";
@@ -49,6 +49,7 @@ public class MemberDaoImpl implements MemberDao{
 				PreparedStatement pstmt = conn.prepareStatement(SQL_ADD)){
 			pstmt.setString(1, member.getAccount());
 			pstmt.setString(2, BCrypt.hashpw(member.getPasswd(), BCrypt.gensalt()));
+			pstmt.setString(3, member.getName());
 			return pstmt.executeUpdate() > 0;
 		}
 	}
