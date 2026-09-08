@@ -72,7 +72,7 @@ public class JDBC18 {
 								){
 							
 							while(rs.next()) {
-								int id = rs.getInt("id");
+								int id = rs.getInt("EmployeeID");
 								double sum = rs.getDouble("sum");
 							}
 						}
@@ -107,8 +107,15 @@ public class JDBC18 {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException{
 		init();
+		
+		runTest("DriverManagder", JDBC18::getConnectionFromDriverManager);
+		runTest("HikariCP", JDBC18::getConnectionFromHikari);
+		
+		if (dataSource != null) {
+			dataSource.close();
+		}
 	}
 
 }
