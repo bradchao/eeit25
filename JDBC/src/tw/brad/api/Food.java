@@ -4,6 +4,8 @@ public class Food {
 	private long id;
 	private String name, addr, tel, feature;
 	
+	public Food() {}
+	
 	public Food(long id, String name, String addr, String tel, String feature) {
 		super();
 		this.id = id;

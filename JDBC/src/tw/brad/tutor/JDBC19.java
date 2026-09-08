@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import tw.brad.api.Food;
 import tw.brad.api.JdbcTool;
 import tw.brad.api.Member;
 import tw.brad.api.RowMapper;
@@ -13,19 +14,24 @@ public class JDBC19 {
 		JdbcTool jdbc = new JdbcTool();
 		
 		String sql = """
-				SELECT id, account, name
-				FROM member
+				SELECT id, name, tel
+				FROM food
+				WHERE name LIKE ?
 				""";
 		
-		List<Member> members = jdbc.query(sql, new RowMapper<Member>() {
+		List<Food> foods = jdbc.query(sql, new RowMapper<Food>() {
 			@Override
-			public Member mapRow(ResultSet rs) throws SQLException {
-				return new Member(rs.getLong("id"), rs.getString("account"),null, rs.getString("name"));
+			public Food mapRow(ResultSet rs) throws SQLException {
+				Food food = new Food();
+				food.setId(rs.getLong("id"));
+				food.setName(rs.getString("name"));
+				food.setTel(rs.getString("tel"));
+				return food;
 			}
-		});
+		}, "%餐廳%");
 		
-		for (Member member : members) {
-			System.out.printf("%d:%s:%s\n", member.getId(), member.getAccount(), member.getName());
+		for (Food food : foods) {
+			System.out.printf("%d:%s:%s\n", food.getId(), food.getName(), food.getTel());
 		}
 		
 		
