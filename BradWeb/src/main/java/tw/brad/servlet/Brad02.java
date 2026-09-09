@@ -7,40 +7,28 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
-@WebServlet("/Brad01")
-public class Brad01 extends HttpServlet {
+@WebServlet("/Brad02")
+public class Brad02 extends HttpServlet {
 	
-	public Brad01() {
-		System.out.println("Brad01()");
-	}
-	
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		System.out.println("init()");
-		//super.init(config);
-		
-	}
-
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("service()");
-		super.service(req, resp);
-	}
-
-
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("doGet()");
-		response.getWriter().append("Brad Served at: ").append(request.getContextPath());
+		//System.out.println("doGet()");
+		
+		Enumeration<String> names = request.getHeaderNames();
+		while (names.hasMoreElements()) {
+			String name = names.nextElement();
+			String value = request.getHeader(name);
+			System.out.printf("%s:%s\n", name, value);
+		}
+		System.out.println("------ ");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("doPost()");
-		//doGet(request, response);
 	}
 
 }
