@@ -19,6 +19,8 @@ public class CalcController extends HttpServlet {
 		
 		String x = request.getParameter("x");
 		String y = request.getParameter("y");
+		String view = request.getParameter("view");
+		if (view == null) view = "view1";
 		
 		// 2. Model
 		try {
@@ -28,10 +30,12 @@ public class CalcController extends HttpServlet {
 			request.setAttribute("x", x);
 			request.setAttribute("y", y);
 			request.setAttribute("result", result);
+			request.setAttribute("view",view);
 		}catch(Exception e) {
 			request.setAttribute("x", "");
 			request.setAttribute("y", "");
 			request.setAttribute("result", "");
+			request.setAttribute("view", view);
 		}
 		
 		// 3. Viewer => forward

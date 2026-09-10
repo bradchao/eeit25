@@ -18,11 +18,15 @@ public class CalcViewer extends HttpServlet {
 		String x = (String)request.getAttribute("x");
 		String y = (String)request.getAttribute("y");
 		String result = (String)request.getAttribute("result");
+		String view = (String)request.getAttribute("view");
+		String source = String.format(
+				"C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\views\\%s.html",
+				view);
 		
 		
 		PrintWriter out = response.getWriter();
 		try {
-			String webContent = BradUtil.loadView();
+			String webContent = BradUtil.loadView(source);
 			String content = webContent.replaceAll("#x", x)
 					.replaceAll("#y", y)
 					.replaceAll("#r", result);
