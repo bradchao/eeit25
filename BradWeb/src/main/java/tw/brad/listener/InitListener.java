@@ -9,8 +9,8 @@ public class InitListener implements ServletContextListener{
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		ServletContextListener.super.contextInitialized(sce);
 		System.out.println("init");
+		ServletContextListener.super.contextInitialized(sce);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -20,8 +20,8 @@ public class InitListener implements ServletContextListener{
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		ServletContextListener.super.contextDestroyed(sce);
 		System.out.println("destroy");
+		ServletContextListener.super.contextDestroyed(sce);
 	}
 
 
