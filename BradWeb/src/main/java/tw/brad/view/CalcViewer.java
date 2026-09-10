@@ -20,7 +20,7 @@ public class CalcViewer extends HttpServlet {
 			String webContent = BradUtil.loadView();
 			out.print(webContent);
 		}catch(Exception e) {
-			
+			out.print("ERROR");
 		}
 		
 	}
