@@ -21,6 +21,10 @@ public class Brad09 extends HttpServlet {
 		String uuid = UUID.randomUUID().toString();
 		System.out.println(uuid);
 		
+		System.out.println(System.getProperty("user.dir"));
+		System.out.println(request.getServletContext().getRealPath("/"));
+		System.out.println(getServletContext().getRealPath("/"));
+		
 		
 	}
 
