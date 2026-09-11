@@ -23,7 +23,6 @@ public class Brad15 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		String url = "jdbc:mysql://localhost:3306/brad?useSSL=false";
 		String sql = """
 				SELECT id, cname
 				FROM cust

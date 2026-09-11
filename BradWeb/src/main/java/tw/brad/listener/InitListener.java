@@ -32,7 +32,7 @@ public class InitListener implements ServletContextListener{
 		ServletContextListener.super.contextInitialized(sce);
 		
 		HikariConfig config = new HikariConfig();
-		config.setJdbcUrl("jdbc:mysql://localhost:3306/brad");
+		config.setJdbcUrl("jdbc:mysql://localhost:3306/brad?useSSL=false");
 		config.setUsername("root");
 		config.setPassword("root");
 		
