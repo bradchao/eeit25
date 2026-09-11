@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import tw.brad.listener.InitListener;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,21 +18,6 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @WebServlet("/Brad15")
 public class Brad15 extends HttpServlet {
-	private static HikariDataSource dataSource;
-	
-	static {
-		HikariConfig config = new HikariConfig();
-		config.setJdbcUrl("jdbc:mysql://localhost:3306/brad");
-		config.setUsername("root");
-		config.setPassword("root");
-		
-		// 優化
-		config.setMaximumPoolSize(10);
-		config.setMinimumIdle(4);
-		config.setConnectionTimeout(10*1000);
-		
-		dataSource = new HikariDataSource(config);
-	}	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -41,7 +28,7 @@ public class Brad15 extends HttpServlet {
 				SELECT id, cname
 				FROM cust
 				""";
-		try (Connection conn = dataSource.getConnection();
+		try (Connection conn = InitListener.getDataSource().getConnection();
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)){
 			
