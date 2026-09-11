@@ -32,7 +32,7 @@ public class FoodMain extends HttpServlet {
 			
 			
 			// 3. Viewer
-			request.getRequestDispatcher("").forward(request, response);
+			request.getRequestDispatcher("FoodViewer").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
