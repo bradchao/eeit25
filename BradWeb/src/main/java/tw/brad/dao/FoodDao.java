@@ -16,6 +16,10 @@ public class FoodDao {
 			ORDER BY id
 			LIMIT ?, ?
 			""";
+	private static final String SQL_QUERY_ALL = """
+			SELECT COUNT(id) count
+			FROM food
+			""";
 	
 	public List<Food> queryByPage(int page, int rpp) throws Exception {
 		int spage = Math.max(1, page);

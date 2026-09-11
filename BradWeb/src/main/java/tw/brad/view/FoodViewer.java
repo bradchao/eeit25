@@ -17,7 +17,7 @@ import tw.brad.api.Food;
 
 @WebServlet("/FoodViewer")
 public class FoodViewer extends HttpServlet {
-	private static final String TEMPLETE_PATH = "C:\\Users\\User\\git\\repository\\BradWeb\\src\\main\\webapp\\WEB-INF\\views\\view1.html";
+	private static final String TEMPLETE_PATH = "/WEB-INF/views/view1.html";
 	private String templete;
 
 	@Override
@@ -59,8 +59,8 @@ public class FoodViewer extends HttpServlet {
 	}
 	
 	private String readTemplete(String file) throws Exception {
-//		try(InputStream in = getServletContext().getResourceAsStream(file)){
-		try(BufferedInputStream in = new BufferedInputStream(new FileInputStream(file))){
+		try(InputStream in = getServletContext().getResourceAsStream(file)){
+//		try(BufferedInputStream in = new BufferedInputStream(new FileInputStream(file))){
 			if (in == null) {
 				throw new IOException("Templete File NOT FOUND");
 			}
