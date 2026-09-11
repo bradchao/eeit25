@@ -39,11 +39,18 @@ public class FoodViewer extends HttpServlet {
 		if (foods == null) foods = Collections.emptyList();
 		
 		Integer page = (Integer)request.getAttribute("page");
+		Integer prev = (Integer)request.getAttribute("prev");
+		Integer next = (Integer)request.getAttribute("next");
+		String title = (String)request.getAttribute("title");
+		
 		String spage = page != null ? page.toString() : "1";
 		
 		String tableHtml = bindTable(foods);
 		
 		String html = templete.replace("{{TABLE}}", tableHtml)
+							.replace("{{TITLE}}", title)
+							.replace("{{PREV}}", prev.toString())
+							.replace("{{NEXT}}", next.toString())
 							.replace("{{PAGE}}", spage);
 		
 		response.getWriter().print(html);

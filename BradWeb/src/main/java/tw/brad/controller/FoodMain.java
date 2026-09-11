@@ -29,6 +29,9 @@ public class FoodMain extends HttpServlet {
 
 			request.setAttribute("foods", foods);
 			request.setAttribute("page", page);
+			request.setAttribute("title", "不來的大公司");
+			request.setAttribute("prev", page - 1);
+			request.setAttribute("next", page + 1);
 			
 			
 			// 3. Viewer

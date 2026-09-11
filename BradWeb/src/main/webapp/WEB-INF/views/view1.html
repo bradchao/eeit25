@@ -5,11 +5,11 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<h1>Company Name</h1>
+		<h1>{{TITLE}}</h1>
 		<div>
-			<span>上一頁</span>
+			<span><a href='?page={{PREV}}'>上一頁</a></span>
 			<span> | 第 {{PAGE}} 頁 | </span>
-			<span>下一頁</span>
+			<span><a href='?page={{NEXT}}'>下一頁</a></span>
 		</div>
 		{{TABLE}}
 	</body>
