@@ -31,13 +31,21 @@ public class FoodDao {
 			pstmt.setInt(2, rpp);
 			
 			try(ResultSet rs = pstmt.executeQuery()){
-				
+				while (rs.next()) {
+					Food food = new Food();
+					food.setId(rs.getLong("id"));
+					food.setName(rs.getString("name"));
+					food.setTel(rs.getString("tel"));
+					food.setCity(rs.getString("city"));
+					food.setTown(rs.getString("town"));
+					food.setAddr(rs.getString("addr"));
+					food.setPicurl(rs.getString("picurl"));
+					foods.add(food);
+				}
 			}
 		}
 		
-		
-		
-		return list;
+		return foods;
 	}
 	
 }
