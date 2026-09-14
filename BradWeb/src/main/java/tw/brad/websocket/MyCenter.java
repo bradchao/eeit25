@@ -10,7 +10,7 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/mycenter")
+//@ServerEndpoint("/mycenter")
 public class MyCenter {
 	private static HashSet<Session> sessions;
 	private static Session teacherSession;
