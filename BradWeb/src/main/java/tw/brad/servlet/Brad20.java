@@ -27,6 +27,18 @@ public class Brad20 extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", member);
 				
+				int lottery = (int)(Math.random()*49+1);
+				session.setAttribute("lottery", lottery);
+				
+				int[] ary = {1,2,3,4,5};
+				session.setAttribute("ary", ary);
+				
+				lottery = 1234;
+				ary[2] = 3000;
+				
+				session.setMaxInactiveInterval(10);
+				
+				
 				response.sendRedirect("Brad21");
 				
 			}else {

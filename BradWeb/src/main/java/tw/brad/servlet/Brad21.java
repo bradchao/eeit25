@@ -31,8 +31,15 @@ public class Brad21 extends HttpServlet {
 			return;
 		}
 		
+		int lottery = (Integer)session.getAttribute("lottery");
+		int[] ary = (int[])session.getAttribute("ary");
+		
+		
+		
 		PrintWriter out = response.getWriter();
 		out.printf("Welcome, %s<hr />", member.name());
+		out.printf("Lottery: %d<br />", lottery);
+		out.printf("ary[2]: %d<br/>", ary[2]);
 		out.print("<a href='Brad19'>Logout</a>");
 		
 		
