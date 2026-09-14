@@ -13,8 +13,20 @@
 				let url = "Brad24?max=" + $("#max").val();
 				
 				$.get(url, function(data,status){
-					$('#lottery').html(data);
+					if (status = "success"){
+						$('#lottery').html(data);
+					}
 				});
+			}
+			function test3(){
+				let url = "Brad24";
+				$.post(url, {
+					"max": $("#max").val()			
+				}, function(data, status){
+					if (status = "success"){
+						$('#lottery').html(data);
+					}
+				});				
 			}
 		
 		</script>
@@ -26,6 +38,7 @@
 		<hr />
 		<input type="button" onclick="test1()" value="Test1" /><br />
 		<input type="button" onclick="test2()" value="Test2" /><br />
+		<input type="button" onclick="test3()" value="Test3" /><br />
 	
 	
 	</body>
