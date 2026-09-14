@@ -26,7 +26,7 @@ public class Brad24 extends HttpServlet {
 			try {
 				lottery = (int)(Math.random()*Integer.parseInt(max)+1);
 			}catch(Exception e) {
-				
+				lottery = (int)(Math.random()*49+1);
 			}
 		}else {
 			lottery = (int)(Math.random()*49+1);

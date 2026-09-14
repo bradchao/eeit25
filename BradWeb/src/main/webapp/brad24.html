@@ -28,6 +28,21 @@
 					}
 				});				
 			}
+			
+			
+			function test4(){
+				let url = "Brad24";
+				$.ajax({
+					url: url,
+					method: 'post',
+					data: {
+						'max':$("#max").val()
+					},
+					success: function(data){
+						$('#lottery').html(data);
+					}
+				});
+			}
 		
 		</script>
 	
@@ -39,6 +54,7 @@
 		<input type="button" onclick="test1()" value="Test1" /><br />
 		<input type="button" onclick="test2()" value="Test2" /><br />
 		<input type="button" onclick="test3()" value="Test3" /><br />
+		<input type="button" onclick="test4()" value="Test4" /><br />
 	
 	
 	</body>
