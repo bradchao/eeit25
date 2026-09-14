@@ -9,14 +9,21 @@ window.onload = function(){
 	
 	let websocket;
 	
+	start.style.display = "block";
+	chatDiv.style.display = "none";
+	
 	start.addEventListener("click", function(){connect(URL)});
-	send.addEventListener("click", function(){});
+	send.addEventListener("click", function(){
+		websocket.send("ok");
+	});
 	
 	function connect(url){
 		websocket = new WebSocket(url);
 		
 		websocket.onopen = function(){
 			console.log("onopen");
+			start.style.display = "none";
+			chatDiv.style.display = "block";
 		};
 		websocket.onmessage = function(event){
 			console.log("onmessage");
