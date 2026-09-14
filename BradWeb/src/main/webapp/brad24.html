@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script>
+			function test1(){
+				let url = "Brad24";
+				$('#lottery').load(url);
+			}
+			function test2(){
+				let url = "Brad24?max=" + $("#max").val();
+				
+				$.get(url, function(data,status){
+					$('#lottery').html(data);
+				});
+			}
+		
+		</script>
+	
+	</head>
+	<body>
+		Lottery: <span id="lottery"></span><hr />
+		<input type="number" id="max" />
+		<hr />
+		<input type="button" onclick="test1()" value="Test1" /><br />
+		<input type="button" onclick="test2()" value="Test2" /><br />
+	
+	
+	</body>
+</html>

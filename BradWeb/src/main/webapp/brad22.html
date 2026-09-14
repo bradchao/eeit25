@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript">
+			const xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = callback;
+			
+			
+			function callback(){
+				if (xhttp.readyState == 4){
+					console.log(xhttp.status);
+				}
+			}
+		
+			function test1(){
+				xhttp.open("GET", "Brad22", true);
+				xhttp.send();
+			}
+		
+		
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="test1()" value="Test1"/>
+	</body>
+</html>
