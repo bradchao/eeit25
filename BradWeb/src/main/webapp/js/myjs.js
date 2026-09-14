@@ -14,7 +14,10 @@ window.onload = function(){
 	
 	start.addEventListener("click", function(){connect(URL)});
 	send.addEventListener("click", function(){
-		websocket.send("ok");
+		let message = {
+			message: mesg.value
+		};
+		websocket.send(JSON.stringify(message));
 	});
 	
 	function connect(url){
@@ -25,12 +28,16 @@ window.onload = function(){
 			start.style.display = "none";
 			chatDiv.style.display = "block";
 		};
+		
 		websocket.onmessage = function(event){
-			console.log("onmessage");
+			let mesgObj = JSON.parse(event.data);
+			log.innerHTML += mesgObj.message + "<br />";
 		};
+		
 		websocket.onclose = function(){
 			console.log("onclose");
 		};
+		
 		websocket.onerror = function(event){
 			console.log("onerror");
 		};
