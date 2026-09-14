@@ -19,12 +19,15 @@ public class MemberDao {
 				PreparedStatement pstmt = conn.prepareStatement(SQL_LOGIN)){
 			pstmt.setString(1, account);
 			try(ResultSet rs = pstmt.executeQuery()){
-				if (rs.next() && BCrypt.checkpw(passwd, rs.getString("passwd"))) {
-					return new Member(
-							rs.getLong("id"), 
-							rs.getString("account"), 
-							rs.getString("passwd"), 
-							rs.getString("name"), null, null);
+				if (rs.next()) {
+					if (BCrypt.checkpw(passwd, rs.getString("passwd"))) {
+						return new Member(
+								rs.getLong("id"), 
+								rs.getString("account"), 
+								rs.getString("passwd"), 
+								rs.getString("name"), null, null);
+					}
+				}else {
 				}
 			}
 		}
