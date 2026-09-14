@@ -14,9 +14,21 @@ public class Brad24 extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		String max = request.getParameter("max");
+		int lottery = 0;
+		if (max != null) {
+			try {
+				lottery = (int)(Math.random()*Integer.parseInt(max)+1);
+			}catch(Exception e) {
+				
+			}
+		}else {
+			lottery = (int)(Math.random()*49+1);
+		}
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print((int)(Math.random()*49+1));
+		out.print(lottery);
 	}
 
 }
