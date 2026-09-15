@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function op(){
+				let url = "brad31.jsp";
+				$.post(url,{
+					x : $('#x').val(),
+					y : $('#y').val()
+				},function(data,status){
+					if (status = 'success'){
+						console.log(data);
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Brad Big Company</h1>
+		<hr />
+		<input type='number' id="x"/>
+		+
+		<input type='number' id="y"/>
+		<input type='button' onclick="op()" value='=' />
+		<span id="result"></span>
+	</body>
+</html>
