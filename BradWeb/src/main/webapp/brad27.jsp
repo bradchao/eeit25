@@ -9,6 +9,13 @@
 	<body>
 		<h1>九九乘法表</h1>
 		<hr />
+		<form>
+			Start: <input type="number" name="start" />
+			Rows: <input type="number" name="rows" />
+			Columns: <input type="number" name="cols" />
+			<input type="submit" value="變更" />
+		</form>
+		<hr />
 		<table border='1' width='100%'>
 		<%
 			for (int k=0; k<2; k++){
