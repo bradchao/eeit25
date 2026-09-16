@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- 
+	{
+		employee: "xxxx",
+		customer: "xxxx",
+		orderdate: "1999-01-02",
+		total: 100,
+		details: [
+			{
+				pname: "xxx",
+				price: 123,
+				qty: 3,
+				sum: 369
+			},
+			{
+				pname: "xxx",
+				price: 123,
+				qty: 3,
+				sum: 369
+			},
+			{
+				pname: "xxx",
+				price: 123,
+				qty: 3,
+				sum: 369
+			}
+		]
+	}
+
+ -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			let url = "brad48.jsp";
+			function search(){
+				$.ajax({
+					url: url,
+					method: "get",
+					data: {
+						"orderId": $('#orderId').val()
+					},
+					success: function(order){
+						
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Northwind Big Company</h1>
+		<hr />
+		<div>
+			<label>Order ID</label>
+			<input id="orderId" />
+			<input type="button" onclick="search()" value="Search">
+		</div>	
+		<hr />
+		<div>
+			<label>Order Date:</label>
+			<span id="orderDate"></span>
+		</div>	
+		<div>
+			<label>Customer:</label>
+			<span id="customer"></span>
+		</div>	
+		<div>
+			<label>Employee:</label>
+			<span id="employee"></span>
+		</div>	
+		<table id="table"></table>
+		<div>
+			<label>Total:</label>
+			<span id="total"></span>
+		</div>
+	</body>
+</html>
