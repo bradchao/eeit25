@@ -48,6 +48,21 @@ public class BradUtil {
 					rows[0].getOrDefault("CompanyName", ""), 
 					rows[0].getOrDefault("ContactName", "")));
 			root.put("orderdate", rows[0].getOrDefault("OrderDate", ""));
+			
+			JSONArray details = new JSONArray();
+			for (SortedMap<String,String> row: rows) {
+				JSONObject obj = new JSONObject();
+				
+				obj.put("pname", row.getOrDefault("ProductName", ""));
+				obj.put("price", row.getOrDefault("UnitPrice", ""));
+				obj.put("qty", row.getOrDefault("Quantity", ""));
+				
+				
+				details.put(obj);
+			}
+			
+			root.put("details", details);
+			
 		}
 		return root.toString();
 	}
