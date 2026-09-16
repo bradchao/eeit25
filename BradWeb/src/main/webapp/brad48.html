@@ -32,6 +32,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<style type="text/css">
+			table {border-collapse: collapse; width: 100%}
+			th, td {border:1px solid #ccc; padding: 8px}
+			th {background-color: #aaa}
+		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			let url = "brad48.jsp";
@@ -44,6 +49,35 @@
 					},
 					success: function(order){
 						console.log(order);
+						$('#orderDate').html(order.orderdate);
+						$('#customer').html(order.customer);
+						$('#employee').html(order.employee);
+						$('#total').html(order.total);
+						
+						$('#table').empty();
+						$('#table').append(
+							'<tr>' +
+								'<th>Index</th>' +
+								'<th>Product</th>' +
+								'<th>Price</th>' +
+								'<th>Qty</th>' +
+								'<th>Sum</th>' +
+							'</tr>' 
+						);
+						
+						$(order.details).each(function(i,row){
+							$('#table').append(
+								'<tr>' +
+									'<td>' + (i+1) + '</td>' +
+									'<td>' + row.pname + '</td>' +
+									'<td>' + row.price + '</td>' +
+									'<td>' + row.qty + '</td>' +
+									'<td>' + row.sum + '</td>' +
+								'</tr>' 
+							);
+						});
+						
+						
 					}
 				});
 			}
