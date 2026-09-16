@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Context>
+	<Resource
+		name="north"
+		auth="Container"
+		type="javax.sql.DataSource"
+		
+		driver="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost/north"
+		username="root"
+		password="root"
+		
+		maxTotal="20"
+		maxIdel="10"
+		minIdel="4"
+		/>
+		
+	<Resource
+		name="brad"
+		auth="Container"
+		type="javax.sql.DataSource"
+		
+		driver="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost/brad"
+		username="root"
+		password="root"
+		
+		maxTotal="20"
+		maxIdel="10"
+		minIdel="4"
+		/>
+
+</Context>
