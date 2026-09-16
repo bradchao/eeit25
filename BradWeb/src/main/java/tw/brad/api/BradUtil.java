@@ -37,9 +37,19 @@ public class BradUtil {
 			map.put("tel", hotel.getString("Tel"));
 			hotels[i] = map;
 		}
-		
-		
 		return hotels;
+	}
+	
+	public static String order2JSON(SortedMap[] rows) {
+		JSONObject root = new JSONObject();
+		if (rows.length != 0) {
+			root.put("employee", rows[0].getOrDefault("LastName", ""));
+			root.put("customer", String.format("%s(%s)", 
+					rows[0].getOrDefault("CompanyName", ""), 
+					rows[0].getOrDefault("ContactName", "")));
+			root.put("orderdate", rows[0].getOrDefault("OrderDate", ""));
+		}
+		return root.toString();
 	}
 	
 	public static String loadView(String source) throws Exception{
