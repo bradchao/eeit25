@@ -1,0 +1,26 @@
+{
+	"total": 440,
+	"details": [
+		{
+			"pname": "Queso Cabrales",
+			"price": 14,
+			"qty": 12,
+			"sum": 168
+		},
+		{
+			"pname": "Singaporean Hokkien Fried Mee",
+			"price": 9.8,
+			"qty": 10,
+			"sum": 98
+		},
+		{
+			"pname": "Mozzarella di Giovanni",
+			"price": 34.8,
+			"qty": 5,
+			"sum": 174
+		}
+	],
+	"employee": "Buchanan",
+	"orderdate": "1996-07-04T00:00",
+	"customer": "Vins et alcools Chevalier(Paul Henriot)"
+}
