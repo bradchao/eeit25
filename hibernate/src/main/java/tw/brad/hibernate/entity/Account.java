@@ -1,5 +1,7 @@
 package tw.brad.hibernate.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,11 @@ public class Account {
 	@Column(name = "email")
 	private String email;
 	
+	private String passwd;
+	private LocalDate birthday;
+	private Boolean enable;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -38,6 +45,24 @@ public class Account {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+	public Boolean getEnable() {
+		return enable;
+	}
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 	
 	
