@@ -8,6 +8,7 @@
     version="3.2">
 
   <persistence-unit name="brad">
+  	<class>tw.brad.hibernate.entity.Account</class>
     <properties>
       <property name="jakarta.persistence.jdbc.driver"
                 value="com.mysql.cj.jdbc.Driver"/>
