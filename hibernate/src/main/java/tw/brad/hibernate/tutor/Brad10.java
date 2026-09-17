@@ -6,9 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
+import tw.brad.hibernate.entity.Account;
 import tw.brad.hibernate.util.HibernateUtil;
 
-public class Brad08 {
+public class Brad10 {
 	public static void main(String[] args) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			Transaction transaction = session.beginTransaction();
@@ -16,12 +17,17 @@ public class Brad08 {
 			String sql = """
 					SELECT * FROM account
 					""";
-			NativeQuery query = session.createNativeQuery(sql);
-			List list = query.getResultList();
+			NativeQuery<Account> query = session.createNativeQuery(sql, Account.class);
+			List<Account> list = query.getResultList();
 			System.out.println(list.size());
-			for (Object obj : list) {
-				Object[] row = (Object[])obj;
-				System.out.printf("%s:%s:%s:%s:%s\n", row[0],row[1],row[2],row[3],row[4]);
+			for (Account account : list) {
+				System.out.printf("%s:%s:%s:%s:%s\n", 
+						account.getId(),
+						account.getName(),
+						account.getEmail(),
+						account.getBirthday(),
+						account.getEnable()
+						);
 			}
 			
 			transaction.commit();
