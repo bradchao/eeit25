@@ -11,5 +11,7 @@
 		
 		<mapping class="tw.brad.hibernate.entity.Account"></mapping>
 		<mapping class="tw.brad.hibernate.entity.AccountInfo"></mapping>
+		<mapping class="tw.brad.hibernate.entity.Order"></mapping>
+		<mapping class="tw.brad.hibernate.entity.OrderItem"></mapping>
 	</session-factory>
 </hibernate-configuration>
