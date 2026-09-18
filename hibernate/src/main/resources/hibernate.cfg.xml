@@ -10,5 +10,6 @@
 		<property name="hibernate.format_sql">true</property>
 		
 		<mapping class="tw.brad.hibernate.entity.Account"></mapping>
+		<mapping class="tw.brad.hibernate.entity.AccountInfo"></mapping>
 	</session-factory>
 </hibernate-configuration>

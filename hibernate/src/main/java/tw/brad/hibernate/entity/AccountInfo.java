@@ -60,6 +60,7 @@ public class AccountInfo {
 	
 	//------------------------------------
 	@OneToOne
+	@MapsId
 	@JoinColumn(name = "accountid", nullable = false, unique = true)
 	private Account account;
 
