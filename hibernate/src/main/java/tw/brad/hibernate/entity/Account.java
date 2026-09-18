@@ -22,7 +22,7 @@ public class Account {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
 	private String passwd;
@@ -76,6 +76,9 @@ public class Account {
 	}
 	public void setAccountinfo(AccountInfo accountinfo) {
 		this.accountinfo = accountinfo;
+		if (accountinfo != null) {
+			accountinfo.setAccount(this);
+		}
 	}
 	
 	

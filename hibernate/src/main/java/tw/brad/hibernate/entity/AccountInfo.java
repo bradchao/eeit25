@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -22,6 +23,7 @@ public class AccountInfo {
 	@Column(name = "gender")
 	private Boolean isMale;
 	
+	@Lob
 	private byte[] icon;
 
 	public Integer getId() {
@@ -58,8 +60,7 @@ public class AccountInfo {
 	
 	//------------------------------------
 	@OneToOne
-	@MapsId
-	@JoinColumn(name = "accountid")
+	@JoinColumn(name = "accountid", nullable = false, unique = true)
 	private Account account;
 
 	public Account getAccount() {
