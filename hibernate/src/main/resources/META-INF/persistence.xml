@@ -12,6 +12,8 @@
   	<class>tw.brad.hibernate.entity.AccountInfo</class>
   	<class>tw.brad.hibernate.entity.Order</class>
   	<class>tw.brad.hibernate.entity.OrderItem</class>
+  	<class>tw.brad.hibernate.entity.Student</class>
+  	<class>tw.brad.hibernate.entity.Course</class>
     <properties>
       <property name="jakarta.persistence.jdbc.driver"
                 value="com.mysql.cj.jdbc.Driver"/>

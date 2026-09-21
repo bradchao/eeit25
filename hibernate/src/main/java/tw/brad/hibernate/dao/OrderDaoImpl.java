@@ -18,6 +18,8 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public Optional<Order> findById(Session session, Long id) {
 		Order order = session.find(Order.class, id);
+		// LAZY => just Order
+		// EAGER => include OrderItem
 		return Optional.ofNullable(order);
 	}
 
