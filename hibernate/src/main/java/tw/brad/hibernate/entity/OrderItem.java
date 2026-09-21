@@ -59,8 +59,7 @@ public class OrderItem {
 		this.qty = qty;
 	}
 	//-------------------
-	//@ManyToOne(fetch = FetchType.EAGER)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "oid", nullable = false)
 	private Order order;
 

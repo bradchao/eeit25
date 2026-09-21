@@ -10,13 +10,22 @@ import tw.brad.hibernate.service.OrderServiceImpl;
 public class Brad20 {
 
 	public static void main(String[] args) {
-		OrderService service = new OrderServiceImpl();
+		OrderServiceImpl service = new OrderServiceImpl();
 		
-		Order order = service.getOrderWithItems(5L);
+//		Order order = service.getOrderWithItems(5L);
+//		List<OrderItem> items = order.getItems();
+//		for (OrderItem item : items) {
+//			System.out.println(item.getPname() + ":" + item.getPrice() + ":" + item.getQty());
+//		}
+
+		Order order = service.getOrderWithId(5L);
 		List<OrderItem> items = order.getItems();
-		for (OrderItem item : items) {
-			System.out.println(item.getPname() + ":" + item.getPrice() + ":" + item.getQty());
+		if (items != null) {
+			for (OrderItem item : items) {
+				System.out.println(item.getPname() + ":" + item.getPrice() + ":" + item.getQty());
+			}
 		}
+		
 		
 	}
 

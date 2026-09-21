@@ -219,6 +219,15 @@ public class OrderServiceImpl implements OrderService{
 		}				
 	}
 
+	public Order getOrderWithId(Long orderId) {
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			
+			return dao.findById(session, orderId)
+					.orElseThrow(()->new IllegalArgumentException("Order NOT FOUND"));
+		}				
+	}
+	
+	
 	@Override
 	public void delOrder(Long orderId) {
 		Transaction transaction = null;
