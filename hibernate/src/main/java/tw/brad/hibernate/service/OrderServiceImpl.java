@@ -104,7 +104,9 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void addItem(Long orderId, String pname, int price, int qty) {
 		Transaction transaction = null;
-		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+		Session session = null;
+		try{
+			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			
 			Order order = dao.findById(session, orderId)
@@ -113,10 +115,18 @@ public class OrderServiceImpl implements OrderService{
 			
 			transaction.commit();
 		}catch(Exception e) {
+			//e.printStackTrace();
+			if (e instanceof IllegalArgumentException) throw new IllegalArgumentException("Order NOT FOUND");
 			if (transaction != null) {
-				transaction.rollback();
+				try {
+					transaction.rollback();
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
 			}
-		}		
+		}finally {
+			if (session != null) session.close();
+		}	
 	}
 
 	@Override
