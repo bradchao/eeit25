@@ -24,7 +24,7 @@ public class Order {
 	private String customer;
 	
 	@Column(name ="odate", nullable = false)
-	private LocalDate odate;
+	private LocalDate odate = LocalDate.now();
 	
 	public long getId() {
 		return id;
