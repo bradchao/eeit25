@@ -16,13 +16,13 @@ public class Brad18 {
 	public static void main(String[] args) {
 		OrderService service = new OrderServiceImpl();
 		
-		Long id = service.createOrder("TSMC");
-		System.out.println(id);
-		
-//		Long id = service.createOrderWithItems("III", List.of(new OrderItem("Mouse", 10, 20),
-//				new OrderItem("NB", 20000, 30),
-//				new OrderItem("Mac",30000,44)));
+//		Long id = service.createOrder("III6");
 //		System.out.println(id);
+		
+		Long id = service.createOrderWithItems("III7", List.of(new OrderItem("Mouse", 10, 20),
+				new OrderItem("NB", 20000, 30),
+				new OrderItem("Mac",30000,44)));
+		System.out.println(id);
 		
 		
 	}

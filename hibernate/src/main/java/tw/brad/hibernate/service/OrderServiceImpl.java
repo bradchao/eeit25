@@ -12,27 +12,32 @@ import tw.brad.hibernate.entity.OrderItem;
 import tw.brad.hibernate.util.HibernateUtil;
 
 public class OrderServiceImpl implements OrderService{
-	private OrderDao dao = new OrderDaoImpl();
+	private OrderDaoImpl dao = new OrderDaoImpl();
 
 	@Override
 	public Long createOrder(String customer) {
 		Transaction transaction = null;
 		Session session = null;
+		Long id = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
 			
-			Order order = new Order();
-			order.setCustomer(customer);
-			Long id = dao.save(session, order);
+			List<Order> list = dao.findByCustomer(session, customer);
+			if (list.size() == 0) {
+				transaction = session.beginTransaction();
+				Order order = new Order();
+				order.setCustomer(customer);
+				id = dao.save(session, order);
+				transaction.commit();
+			}
 			
-			transaction.commit();
 			return id;
 		}catch(Exception e) {
 			e.printStackTrace();
 			if (transaction != null) {
 				try {
 					transaction.rollback();
+					System.out.println("rollback");
 				}catch(Exception ee) {
 					e.printStackTrace();
 				}
@@ -49,18 +54,23 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Long createOrderWithItems(String customer, List<OrderItem> items) {
 		Transaction transaction = null;
+		Long id = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
-			transaction = session.beginTransaction();
 			
-			Order order = new Order();
-			order.setCustomer(customer);
 			
-			for (OrderItem item: items) {
-				order.addItem(item);
+			List<Order> list = dao.findByCustomer(session, customer);
+			if (list.size() == 0) {
+				transaction = session.beginTransaction();
+				Order order = new Order();
+				order.setCustomer(customer);
+				
+				for (OrderItem item: items) {
+					order.addItem(item);
+				}
+				id = dao.save(session, order);
+				
+				transaction.commit();
 			}
-			Long id = dao.save(session, order);
-			
-			transaction.commit();
 			return id;
 		}catch(Exception e) {
 			if (transaction != null) {
