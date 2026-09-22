@@ -1,0 +1,22 @@
+{
+	"date": "1996-07-04 00:00:00",
+	"details": [
+		{
+			"pname": "Queso Cabrales",
+			"price": 14.0000,
+			"qty": 12
+		},
+		{
+			"pname": "Singaporean Hokkien Fried Mee",
+			"price": 9.8000,
+			"qty": 10
+		},
+		{
+			"pname": "Mozzarella di Giovanni",
+			"price": 34.8000,
+			"qty": 5
+		}
+	],
+	"employee": "Buchanan",
+	"customer": "Vins et alcools Chevalier"
+}
